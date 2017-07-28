@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            ParseApplications parseApplications = new ParseApplications();
+            parseApplications.parse(s);
         }
 
         @Override
@@ -63,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
                     if (charsRead > 0){
                         xmlResult.append(String.copyValueOf(inputBuffer, 0, charsRead));
                     }
-                    reader.close();
-                    return xmlResult.toString();
                 }
+                reader.close();
+                return xmlResult.toString();
 
             }catch (MalformedURLException e){
                 Log.e(TAG, "downloadXML: Invalid URL " + e.getMessage());
@@ -76,3 +78,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 }
+
